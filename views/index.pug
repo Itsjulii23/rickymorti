@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1 Lista de personajes 
+  button#boton Generar personajes
+  
+  script.
+    let boton = document.getElementById('boton');
+    boton.addEventListener('click', ()=>{
+      let url = `/personaje/todos`;
+      window.location.href=url;
+    });

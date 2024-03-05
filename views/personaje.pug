@@ -1,0 +1,27 @@
+extends layout
+
+block content
+    input#input(type="text" placeholder="Busca por ID" name="id")
+    button#button(type="button") Buscar  
+    .container
+        each personaje in personajes
+            .row 
+                .col-12.col-md-3
+                    .card(style='width: 18rem;')
+                        img.card-img-top(src=`${personaje.image}` alt='...')
+                        .card-body
+                            p #{personaje.id}
+                            h5.card-title #{personaje.name}
+                            h6.card-subtitle.mb-2.text-body-secondary #{personaje.gender}
+                            p.card-text #{new Date(personaje.created).toISOString().split('T')[0]}
+                            a.card-link(href=`${personaje.url}`) Descargar su ficha (JSON)
+                            p
+                            a.card-link(href="/personaje/todos") Volver Atras
+
+    script.
+        let button = document.getElementById('button');
+        button.addEventListener('click', ()=>{
+            let input = document.getElementById('input').value;
+            let url = `/personaje/${input}`;
+            window.location.href=url;
+        })
